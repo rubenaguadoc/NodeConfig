@@ -9,9 +9,9 @@
   },
   "author": "Rubén Aguado Cosano",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/RACAPPS/NodeConfig.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RACAPPS/NodeConfig.git"
   },
   "devDependencies": {
     "ajv": "^6.5.2",
