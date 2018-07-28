@@ -8,5 +8,5 @@ You can use SASS and any ES version.
 
 `npm init -y && npm i` for a fast startup.
 
-`npm run build` for minified compiling version in the `dist` folder.
+`npm run build` for minified compiling version in the `dist` folder.</br>
 `npm run serve` for development live server.
