@@ -6,7 +6,7 @@ You can place html wherever you want, but you'll have to register it on the Webp
 
 You can use SASS and any ES version.
 
-`npm init -y && npm i` for a fast startup.
+`npm i` for a fast startup.
 
 `npm run build` for minified compiling version in the `dist` folder.</br>
 `npm run serve` for development live server.
