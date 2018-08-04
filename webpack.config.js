@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 let entry = {};
 let plugins = [
@@ -14,12 +15,16 @@ let plugins = [
     $: 'jquery',
     jQuery: 'jquery'
   }),
+  new MiniCssExtractPlugin({
+    filename: 'css/[name]-[contenthash:4].css',
+    chunkFilename: '[id].css'
+  }),
   new FaviconsWebpackPlugin({
     logo: './src/img/favicon.png',
-    prefix: '/icons-[hash]/',
+    prefix: '/img/icons/',
+    title: 'My App Title',
     inject: true,
     persistentCache: true,
-    title: 'My App Title',
     icons: {
       android: true,
       appleIcon: false,
@@ -33,9 +38,29 @@ let plugins = [
       windows: false
     }
   }),
-  new MiniCssExtractPlugin({
-    filename: 'css/[name]-[contenthash:4].css',
-    chunkFilename: '[id].css'
+  new WebpackPwaManifest({
+    name: 'App Name',
+    short_name: 'Short',
+    description: 'Description',
+    theme_color: '#21f3c7',
+    background_color: '#f4f4f4',
+    display: 'standalone',
+    orientation: 'portrait',
+    start_url: '/index.html',
+    lang: 'es-ES',
+    Scope: '/',
+    inject: true,
+    fingerprints: true,
+    ios: false,
+    publicPath: '.',
+    includeDirectory: true,
+    icons: [
+      {
+        src: path.resolve('src/img/favicon.png'),
+        sizes: [72, 96, 128, 144, 152, 192, 256, 384, 512],
+        destination: path.join('img', 'icons')
+      }
+    ]
   })
 ];
 
@@ -46,7 +71,7 @@ function addPage (path) {
     name = `${name}${i}`;
     i++;
   }
-  plugins.push(
+  plugins.unshift(
     new HtmlWebpackPlugin({
       inject: true,
       minify: true,
