@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const workboxPlugin = require('workbox-webpack-plugin');
 
 let entry = {};
 let plugins = [
@@ -61,6 +62,17 @@ let plugins = [
         destination: path.join('img', 'icons')
       }
     ]
+  }),
+  new workboxPlugin.GenerateSW({
+    swDest: 'sw.js',
+    clientsClaim: true,
+    skipWaiting: true,
+    exclude: [/.*\/icons\/.*/, /^manifest\..*\.json$/],
+    precacheManifestFilename: 'precache-[manifestHash].js',
+    // importsDirectory: 'sw',
+    directoryIndex: 'index.html',
+    cacheId: 'my-app',
+    runtimeCaching: []
   })
 ];
 
