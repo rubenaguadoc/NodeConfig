@@ -63,16 +63,17 @@ let plugins = [
       }
     ]
   }),
-  new workboxPlugin.GenerateSW({
+  new workboxPlugin.InjectManifest({
+    swSrc: './src/sw/sw.js',
     swDest: 'sw.js',
-    clientsClaim: true,
-    skipWaiting: true,
     exclude: [/.*\/icons\/.*/, /^manifest\..*\.json$/],
-    precacheManifestFilename: 'precache-[manifestHash].js',
+    precacheManifestFilename: 'precache-[manifestHash].js'
+    // clientsClaim: true,
+    // skipWaiting: true,
     // importsDirectory: 'sw',
-    directoryIndex: 'index.html',
-    cacheId: 'my-app',
-    runtimeCaching: []
+    // directoryIndex: 'index.html',
+    // cacheId: 'my-app',
+    // runtimeCaching: []
   })
 ];
 
