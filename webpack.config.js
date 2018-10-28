@@ -113,11 +113,13 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['env', 'stage-0']
-        }
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['env', 'stage-0']
+          }
+        }, 'eslint-loader'],
+        exclude: /node_modules/
       },
       {
         test: /\.scss$|\.css$/,
