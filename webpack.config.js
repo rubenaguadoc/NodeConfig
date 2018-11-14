@@ -109,6 +109,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name]-[contenthash:4].js'
   },
+  performance: {
+    hints: 'warning'
+  },
   module: {
     rules: [
       {
